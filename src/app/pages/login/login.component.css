@@ -1,0 +1,19 @@
+.login {
+  height: 100%;
+  background: rgb(10, 97, 145);
+  background: linear-gradient(90deg, rgba(10, 97, 145, 1) 5%, rgba(15, 117, 138, 1) 24%, rgba(39, 180, 120, 1) 79%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form {
+  height: 50%;
+  width: 40%;
+  border: 1px solid #fff;
+  text-align: center;
+}
+
+.logo {
+  height: 9rem;
+}
