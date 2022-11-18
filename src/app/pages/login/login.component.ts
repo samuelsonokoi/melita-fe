@@ -5,7 +5,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ILogin } from 'src/app/models/login';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +20,8 @@ export class LoginComponent {
     '^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*s).{8,}$'
   );
   hide = true;
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -38,7 +42,11 @@ export class LoginComponent {
       username,
       password,
     };
-    console.log(data);
+    let loggedIn = this.authService.login(data);
+    if (loggedIn) {
+      this.loginForm.reset();
+      this.router.navigate(['/']);
+    }
   };
 
   getErrorMessage = (control: AbstractControl | null) => {
