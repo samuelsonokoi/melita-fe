@@ -1,18 +1,11 @@
-.home {
+.offer {
   height: 100%;
   background: rgb(10, 97, 145);
   background: linear-gradient(90deg, rgba(10, 97, 145, 1) 3%, rgba(15, 117, 138, 1) 34%, rgba(39, 180, 120, 1) 100%);
 }
 
-.top {
+.offer-details {
   display: flex;
-  justify-content: flex-end;
-  padding: 1rem;
-}
-
-.services {
-  display: flex;
-  height: 50%;
   overflow: scroll;
   justify-content: center;
   align-content: center;
@@ -21,19 +14,8 @@
 .wrapper {
   width: 40%;
   padding: 1rem;
-  text-align: center;
 }
 
-.wrapper h1 {
-  color: #fff;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-}
-
-mat-icon {
-  color: #fff;
-}
-
-mat-card:hover {
-  transform: scale(.9);
+mat-card {
+  margin-top: 3rem;
 }

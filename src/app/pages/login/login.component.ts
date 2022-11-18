@@ -38,16 +38,13 @@ export class LoginComponent {
   }
 
   onLogin = () => {
+    this.loading = true;
     const { username, password } = this.loginForm.value;
     const data: ILogin = {
       username,
       password,
     };
-    let isLoggedIn = this.authService.login(data);
-    if (isLoggedIn) {
-      this.loginForm.reset();
-      this.router.navigate(['/']);
-    }
+    this.authService.login(data);
   };
 
   getErrorMessage = (control: AbstractControl | null) => {

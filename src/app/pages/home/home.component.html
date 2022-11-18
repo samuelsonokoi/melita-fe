@@ -6,10 +6,23 @@
   </div>
 
   <div class="services">
-    <h3>Offers and Subscriptions</h3>
+    <div class="wrapper">
+      <h1>Offers and Subscriptions</h1>
 
-    <mat-card>
-      <mat-card-content>Simple card</mat-card-content>
-    </mat-card>
+      <div *ngIf="offers.length > 0; else loading">
+        <mat-card *ngFor="let item of offers">
+          <a [routerLink]="[ '/offer', item.id]">
+            <mat-card-content>
+              {{item.name}}
+            </mat-card-content>
+          </a>
+        </mat-card>
+      </div>
+
+      <ng-template #loading>
+        <app-loader></app-loader>
+      </ng-template>
+
+    </div>
   </div>
 </section>

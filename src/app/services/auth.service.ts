@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ILogin } from '../models/login';
 
 @Injectable({
@@ -8,24 +9,20 @@ import { ILogin } from '../models/login';
 export class AuthService {
   API = 'https://selfcare-service.test.melita.com/interview/backend/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  login = (login: ILogin): boolean => {
-    let isSuccess = false;
+  login = (login: ILogin) => {
     this.http.post(this.API + '/login', login).subscribe((data: any) => {
       this.saveTokenToLocalStorage(data.authToken);
-      isSuccess = !isSuccess;
+      this.router.navigate(['/']);
     });
-    return isSuccess;
   };
 
-  logout = (): boolean => {
-    let isSuccess = false;
+  logout = () => {
     this.http.get(this.API + '/logout').subscribe((data: any) => {
       this.removeTokenFromLocalStorage();
-      isSuccess = !isSuccess;
+      this.router.navigate(['/login']);
     });
-    return isSuccess;
   };
 
   saveTokenToLocalStorage = (token: string) => {
@@ -48,5 +45,9 @@ export class AuthService {
         error
       );
     }
+  };
+
+  getAuthToken = () => {
+    return window.localStorage.getItem('authToken');
   };
 }

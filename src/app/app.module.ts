@@ -14,13 +14,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { OffersService } from './services/offers.service';
+import { OfferComponent } from './pages/offer/offer.component';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent],
+  declarations: [AppComponent, HomeComponent, LoginComponent, OfferComponent, LoaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,6 +36,7 @@ import { OffersService } from './services/offers.service';
     MatButtonModule,
     HttpClientModule,
     MatCardModule,
+    MatListModule,
   ],
   providers: [AuthService, OffersService],
   bootstrap: [AppComponent],

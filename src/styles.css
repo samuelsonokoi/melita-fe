@@ -30,3 +30,20 @@ body {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
+
+mat-card {
+  margin-bottom: 1rem;
+  transition: all .3s linear;
+}
+
+mat-card a {
+  text-decoration: none;
+  color: #0a6191;
+  font-size: large;
+  font-weight: bold;
+}
+
+.loading {
+  color: #fff;
+  text-align: center;
+}

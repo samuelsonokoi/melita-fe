@@ -11,7 +11,7 @@ import { OffersService } from 'src/app/services/offers.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  offers!: IOffer[];
+  offers: IOffer[] = [];
   sub!: Subscription;
 
   constructor(
@@ -20,7 +20,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     private offersService: OffersService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.sub = this.offersService.getOffers().subscribe((data: any) => {
+      if (data) {
+        this.offers = data.offers;
+      }
+    });
+  }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
