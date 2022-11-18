@@ -20,6 +20,7 @@ export class LoginComponent {
     '^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*s).{8,}$'
   );
   hide = true;
+  loading = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -42,8 +43,8 @@ export class LoginComponent {
       username,
       password,
     };
-    let loggedIn = this.authService.login(data);
-    if (loggedIn) {
+    let isLoggedIn = this.authService.login(data);
+    if (isLoggedIn) {
       this.loginForm.reset();
       this.router.navigate(['/']);
     }
@@ -61,13 +62,11 @@ export class LoginComponent {
     if (control?.hasError('pattern')) {
       return 'Password must contain an uppercase, lowercase, number and a symbol';
     }
-    console.log(control?.errors);
 
     return;
   };
 
   togglePassword = () => {
     this.hide = !this.hide;
-    console.log(this.hide);
   };
 }

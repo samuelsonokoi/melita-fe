@@ -27,7 +27,11 @@
         </div>
       </div>
 
-      <button mat-stroked-button type="submit" [disabled]="loginForm.invalid">Login</button>
+      <button mat-stroked-button type="submit" [disabled]="loginForm.invalid || loading">
+        <span *ngIf="!loading">Login</span>
+        <mat-icon class="spin" *ngIf="loading">refresh
+        </mat-icon>
+      </button>
     </form>
   </div>
 </section>
