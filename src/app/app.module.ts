@@ -17,13 +17,21 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 
 import { AuthService } from './services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OffersService } from './services/offers.service';
 import { OfferComponent } from './pages/offer/offer.component';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { AuthInterceptor } from './auth.interceptor';
+import { Router } from '@angular/router';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent, OfferComponent, LoaderComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+    OfferComponent,
+    LoaderComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -38,7 +46,17 @@ import { LoaderComponent } from './shared/loader/loader.component';
     MatCardModule,
     MatListModule,
   ],
-  providers: [AuthService, OffersService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useFactory: function (router: Router) {
+        return new AuthInterceptor(router);
+      },
+      multi: true,
+      deps: [Router],
+    },
+    [AuthService, OffersService],
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
