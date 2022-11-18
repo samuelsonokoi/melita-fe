@@ -23,6 +23,7 @@ import { OfferComponent } from './pages/offer/offer.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { Router } from '@angular/router';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { Router } from '@angular/router';
     HttpClientModule,
     MatCardModule,
     MatListModule,
+    SweetAlert2Module,
   ],
   providers: [
     {

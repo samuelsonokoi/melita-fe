@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ILogin } from '../models/login';
+import swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root',
@@ -29,10 +30,12 @@ export class AuthService {
     try {
       window.localStorage.setItem('authToken', token);
     } catch (error) {
-      console.log(
-        'An error occured while trying to save your token, please try again',
-        error
-      );
+      swal.fire({
+        title: 'Error',
+        text:
+          'An error occured while trying to save your token, please try again - ' +
+          error,
+      });
     }
   };
 
@@ -40,10 +43,12 @@ export class AuthService {
     try {
       window.localStorage.removeItem('authToken');
     } catch (error) {
-      console.log(
-        'An error occured while trying to log you out, please try again',
-        error
-      );
+      swal.fire({
+        title: 'Error',
+        text:
+          'An error occured while trying to log you out, please try again - ' +
+          error,
+      });
     }
   };
 

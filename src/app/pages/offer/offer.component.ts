@@ -23,6 +23,8 @@ export class OfferComponent {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
+
+    // use a subscription to handle the observable so it can be unsubscribed from on ngOnDestroy
     this.sub = this.offersService
       .getSubscriptions(this.id)
       .subscribe((data: any) => {

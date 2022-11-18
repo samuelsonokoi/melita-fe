@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    // use a subscription to handle the observable so it can be unsubscribed from on ngOnDestroy
     this.sub = this.offersService.getOffers().subscribe((data: any) => {
       if (data) {
         this.offers = data.offers;

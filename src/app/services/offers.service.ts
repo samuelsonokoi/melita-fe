@@ -4,7 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { IOffer } from '../models/offer';
 import { ISubscription } from '../models/subscription';
 import { AuthService } from './auth.service';
@@ -39,6 +39,4 @@ export class OffersService {
       }
     );
   };
-
-  handleError = (error: HttpErrorResponse) => {};
 }
