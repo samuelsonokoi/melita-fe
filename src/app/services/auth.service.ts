@@ -6,15 +6,23 @@ import { ILogin } from '../models/login';
   providedIn: 'root',
 })
 export class AuthService {
-  loginAPI =
-    'https://selfcare-service.test.melita.com/interview/backend/api/login';
+  API = 'https://selfcare-service.test.melita.com/interview/backend/api';
 
   constructor(private http: HttpClient) {}
 
   login = (login: ILogin): boolean => {
     let isSuccess = false;
-    this.http.post(this.loginAPI, login).subscribe((data: any) => {
+    this.http.post(this.API + '/login', login).subscribe((data: any) => {
       this.saveTokenToLocalStorage(data.authToken);
+      isSuccess = !isSuccess;
+    });
+    return isSuccess;
+  };
+
+  logout = (): boolean => {
+    let isSuccess = false;
+    this.http.get(this.API + '/logout').subscribe((data: any) => {
+      this.removeTokenFromLocalStorage();
       isSuccess = !isSuccess;
     });
     return isSuccess;
@@ -26,6 +34,17 @@ export class AuthService {
     } catch (error) {
       console.log(
         'An error occured while trying to save your token, please try again',
+        error
+      );
+    }
+  };
+
+  removeTokenFromLocalStorage = () => {
+    try {
+      window.localStorage.removeItem('authToken');
+    } catch (error) {
+      console.log(
+        'An error occured while trying to log you out, please try again',
         error
       );
     }

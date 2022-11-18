@@ -13,8 +13,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { OffersService } from './services/offers.service';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent],
@@ -29,8 +32,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatCheckboxModule,
     MatButtonModule,
     HttpClientModule,
+    MatCardModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, OffersService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
