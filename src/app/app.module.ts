@@ -24,6 +24,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { Router } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     MatCardModule,
     MatListModule,
     SweetAlert2Module,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [
     {
